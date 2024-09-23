@@ -1,43 +1,41 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "width": "container",
-    "height": "container",
-    "data": {
-        "url": "https://raw.githubusercontent.com/malim0406/FIT3179/refs/heads/main/FIFA%20WORLD%20CUP%20DATASET%20COMBINED.csv",  // Link to your dataset
-        "format": {
-            "type": "csv"
-        }
-    },
-    "mark": "bar",
-    "encoding": {
-        "x": {
-            "field": "Year",  // The 'Year' column from your dataset
-            "type": "temporal",
-            "title": "World Cup Year"
+    "width": 800,
+    "height": 500,
+    "projection": {"type": "equalEarth"},  // World map projection
+    "layer": [
+      {
+        "data": {
+          "url": "https://raw.githubusercontent.com/malim0406/FIT3179/refs/heads/main/ne_110m_admin_0_countries.json",  // Your TopoJSON URL
+          "format": {
+            "type": "topojson",
+            "feature": "ne_110m_admin_0_countries"  // Feature name from TopoJSON
+          }
         },
-        "y": {
-            "field": "Goals For",  // The 'Goals For' column from your dataset
-            "type": "quantitative",
-            "title": "Goals Scored"
+        "mark": {
+          "type": "geoshape",
+          "fill": "#cccccc",
+          "stroke": "white"
+        }
+      },
+      {
+        "data": {
+          "url": "https://raw.githubusercontent.com/malim0406/FIT3179/refs/heads/main/FIFA%20WORLD%20CUP%20DATASET%20COMBINED.csv",  // Your FIFA dataset
+          "format": {"type": "csv"}
         },
-        "color": {
-            "field": "Team",  // Color bars by 'Team'
-            "type": "nominal",
-            "title": "Team"
+        "mark": "circle",
+        "encoding": {
+          "longitude": {"field": "longitude", "type": "quantitative"},
+          "latitude": {"field": "latitude", "type": "quantitative"},
+          "size": {"field": "Goals For", "type": "quantitative"},
+          "color": {"field": "Team", "type": "nominal"},
+          "tooltip": [
+            {"field": "Year", "type": "temporal", "title": "World Cup Year"},
+            {"field": "Team", "type": "nominal", "title": "Team"},
+            {"field": "Goals For", "type": "quantitative", "title": "Goals Scored"}
+          ]
         }
-    },
-    "config": {
-        "background": "#F3FAF9",
-        "axis": {
-            "titleColor": "#527298",
-            "labelColor": "#527298",
-            "labelFont": "sans-serif",
-            "labelFontSize": 15,
-            "titleFontSize": 15
-        }
-    }
-}
-
-  
-  
+      }
+    ]
+  }
   
