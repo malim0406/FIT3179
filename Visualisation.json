@@ -1,0 +1,12 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+      "url": "",
+      "format": {"type": "json"}
+    },
+    "mark": "geoshape",
+    "encoding": {
+      "color": {"field": "your_data_field", "type": "quantitative"}
+    }
+  }
+  
