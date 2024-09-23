@@ -8,7 +8,7 @@
     "layer": [
       {
         "data": {
-          "url": "https://raw.githubusercontent.com/malim0406/FIT3179/refs/heads/main/ne_110m_admin_0_countries.json",
+          "url": "https://your-repository-url/ne_110m_admin_0_countries.json", 
           "format": {
             "type": "topojson",
             "feature": "ne_110m_admin_0_countries"
@@ -19,7 +19,7 @@
             "lookup": "properties.name",  
             "from": {
               "data": {
-                "url": "https://raw.githubusercontent.com/malim0406/FIT3179/refs/heads/main/obesity-cleaned.csv",
+                "url": "https://your-repository-url/obesity-cleaned.csv",  
                 "format": {"type": "csv"}
               },
               "key": "Country",  
