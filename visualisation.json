@@ -29,11 +29,11 @@
         "encoding": {
           "longitude": {"field": "Longitude", "type": "quantitative"},
           "latitude": {"field": "Latitude", "type": "quantitative"},
-          "size": {"field": "Obesity (%)", "type": "quantitative", "title": "Obesity Rate (%)"},
+          "size": {"field": "Obesity %", "type": "quantitative", "title": "Obesity Rate (%)"},
           "color": {"field": "Country", "type": "nominal"},
           "tooltip": [
             {"field": "Country", "type": "nominal", "title": "Country"},
-            {"field": "Obesity (%)", "type": "quantitative", "title": "Obesity Rate (%)"},
+            {"field": "Obesity %", "type": "quantitative", "title": "Obesity Rate (%)"},
             {"field": "Year", "type": "temporal", "title": "Year"}
           ]
         }
