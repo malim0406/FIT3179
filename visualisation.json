@@ -25,24 +25,10 @@
           "url": "https://raw.githubusercontent.com/malim0406/FIT3179/refs/heads/main/obesity-cleaned.csv",  // Your obesity dataset
           "format": {"type": "csv"}
         },
-        "transform": [
-          {
-            "lookup": "Country",  // Match "Country" from your obesity dataset
-            "from": {
-              "data": {
-                "url": "https://raw.githubusercontent.com/malim0406/FIT3179/refs/heads/main/ne_110m_admin_0_countries.json",  // TopoJSON for world countries
-                "format": {
-                  "type": "topojson",
-                  "feature": "ne_110m_admin_0_countries"
-                }
-              },
-              "key": "properties.name",  // Use the "name" property in TopoJSON to match
-              "fields": ["id"]  // Bring in the ID for geographic mapping
-            }
-          }
-        ],
         "mark": "circle",
         "encoding": {
+          "longitude": {"field": "Longitude", "type": "quantitative"},
+          "latitude": {"field": "Latitude", "type": "quantitative"},
           "size": {"field": "Obesity (%)", "type": "quantitative", "title": "Obesity Rate (%)"},
           "color": {"field": "Country", "type": "nominal"},
           "tooltip": [
@@ -54,4 +40,5 @@
       }
     ]
   }
+  
   
