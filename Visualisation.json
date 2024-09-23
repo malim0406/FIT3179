@@ -1,12 +1,43 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": "container",
+    "height": "container",
     "data": {
-      "url": "",
-      "format": {"type": "json"}
+        "url": "https://raw.githubusercontent.com/malim0406/FIT3179/refs/heads/main/FIFA%20WORLD%20CUP%20DATASET%20COMBINED.csv",  // Link to your dataset
+        "format": {
+            "type": "csv"
+        }
     },
-    "mark": "geoshape",
+    "mark": "bar",
     "encoding": {
-      "color": {"field": "your_data_field", "type": "quantitative"}
+        "x": {
+            "field": "Year",  // The 'Year' column from your dataset
+            "type": "temporal",
+            "title": "World Cup Year"
+        },
+        "y": {
+            "field": "Goals For",  // The 'Goals For' column from your dataset
+            "type": "quantitative",
+            "title": "Goals Scored"
+        },
+        "color": {
+            "field": "Team",  // Color bars by 'Team'
+            "type": "nominal",
+            "title": "Team"
+        }
+    },
+    "config": {
+        "background": "#F3FAF9",
+        "axis": {
+            "titleColor": "#527298",
+            "labelColor": "#527298",
+            "labelFont": "sans-serif",
+            "labelFontSize": 15,
+            "titleFontSize": 15
+        }
     }
-  }
+}
+
+  
+  
   
