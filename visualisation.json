@@ -8,46 +8,55 @@
     "layer": [
       {
         "data": {
-          "url": "https://your-repository-url/ne_110m_admin_0_countries.json", 
+          "url": "https://raw.githubusercontent.com/malim0406/FIT3179/refs/heads/main/ne_110m_admin_0_countries.json",  
           "format": {
             "type": "topojson",
             "feature": "ne_110m_admin_0_countries"
           }
         },
+        "mark": {
+          "type": "geoshape",
+          "fill": "#dddddd",
+          "stroke": "white"
+        }
+      },
+      {
+        "data": {
+          "url": "https://raw.githubusercontent.com/malim0406/FIT3179/refs/heads/main/obesity-cleaned.csv", 
+          "format": {"type": "csv"}
+        },
         "transform": [
           {
-            "lookup": "properties.name",  
+            "lookup": "Country",  
             "from": {
               "data": {
-                "url": "https://your-repository-url/obesity-cleaned.csv",  
-                "format": {"type": "csv"}
+                "url": "https://raw.githubusercontent.com/malim0406/FIT3179/refs/heads/main/ne_110m_admin_0_countries.json",  
+                "format": {
+                  "type": "topojson",
+                  "feature": "ne_110m_admin_0_countries"
+                }
               },
-              "key": "Country",  
+              "key": "properties.name", 
               "fields": ["Obesity %"]  
             }
           }
         ],
-        "mark": {
-          "type": "geoshape",
-          "stroke": "white"
-        },
+        "mark": "circle",
         "encoding": {
-          "color": {
-            "field": "Obesity %",
-            "type": "quantitative",
-            "title": "Obesity Rate (%)",
-            "scale": {"scheme": "blues"}  
-          },
+          "longitude": {"field": "Longitude", "type": "quantitative"},
+          "latitude": {"field": "Latitude", "type": "quantitative"},
+          "size": {"field": "Obesity %", "type": "quantitative", "title": "Obesity Rate (%)"},
+          "color": {"field": "Country", "type": "nominal"},
           "tooltip": [
-            {"field": "properties.name", "type": "nominal", "title": "Country"},
-            {"field": "Obesity %", "type": "quantitative", "title": "Obesity Rate (%)"}
+            {"field": "Country", "type": "nominal", "title": "Country"},
+            {"field": "Obesity %", "type": "quantitative", "title": "Obesity Rate (%)"},
+            {"field": "Year", "type": "temporal", "title": "Year"}
           ]
         }
       }
     ]
   }
-  
-  
+
   
   
   
