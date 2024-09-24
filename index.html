@@ -9,16 +9,72 @@
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
 </head>
 <body>
-  <h1>World CO₂ Emissions Map</h1>
+  <h1>World CO₂ Emissions Map (2022)</h1>
   <div id="vis"></div>
+
+  <!-- Inline Vega-Lite specification with Year 2022 filter -->
   <script type="text/javascript">
-    var spec = "https://raw.githubusercontent.com/malim0406/FIT3179/refs/heads/main/visualisation.json";  // Path to your visualization JSON file
+    const spec = {
+      "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+      "width": 800,
+      "height": 500,
+      "projection": {
+        "type": "equalEarth"
+      },
+      "layer": [
+        {
+          "data": {
+            "url": "https://raw.githubusercontent.com/malim0406/FIT3179/refs/heads/main/ne_110m.json",  // TopoJSON URL
+            "format": {
+              "type": "topojson",
+              "feature": "countries"
+            }
+          },
+          "mark": {
+            "type": "geoshape",
+            "stroke": "white"
+          },
+          "transform": [
+            {
+              "lookup": "properties.name",
+              "from": {
+                "data": {
+                  "url": "https://raw.githubusercontent.com/malim0406/FIT3179/refs/heads/main/annual-co2-emissions-per-country.csv",  // Your CSV URL
+                  "format": {"type": "csv"}
+                },
+                "key": "Country",
+                "fields": ["Annual CO2 emissions", "Year"]  // Include the Year field
+              }
+            },
+            {
+              "filter": "datum['Year'] == 2022"  // Filter data for the year 2022
+            }
+          ],
+          "encoding": {
+            "color": {
+              "field": "Annual CO2 emissions",  // Field from CSV
+              "type": "quantitative",
+              "title": "Annual CO₂ Emissions (tons)",
+              "scale": {"scheme": "reds"}
+            },
+            "tooltip": [
+              {"field": "properties.name", "type": "nominal", "title": "Country"},
+              {"field": "Annual CO2 emissions", "type": "quantitative", "title": "CO₂ Emissions (tons)"}
+            ]
+          }
+        }
+      ]
+    };
+
+    // Embed the inline spec directly into the HTML
     vegaEmbed('#vis', spec).then(function(result) {
       console.log("Visualization loaded successfully");
     }).catch(console.error);
   </script>
 </body>
 </html>
+
+
 
 
 
