@@ -22,7 +22,7 @@
               "url": "https://raw.githubusercontent.com/malim0406/FIT3179/refs/heads/main/obesity-cleaned.csv",  
               "format": {"type": "csv"}
             },
-            "key": "Country",  
+            "key": "Country", 
             "fields": ["Obesity %"]  
           }
         }
