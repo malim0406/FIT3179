@@ -8,12 +8,15 @@
   "layer": [
     {
       "data": {
-        "url": "https://raw.githubusercontent.com/malim0406/FIT3179/refs/heads/main/annual-co2-emissions-per-country.csv",  
+        "url": "https://raw.githubusercontent.com/malim0406/FIT3179/refs/heads/main/annual-co2-emissions-per-country.csv",
         "format": {
           "type": "csv"
         }
       },
       "transform": [
+        {
+          "filter": "datum.Country === 'United States' || datum.Country === 'China' || datum.Country === 'India'"
+        },
         {
           "lookup": "Country",
           "from": {
@@ -27,10 +30,6 @@
             "key": "properties.name",
             "fields": ["Annual CO2 emissions"]
           }
-        },
-        {
-          "calculate": "isNaN(datum['Annual CO2 emissions']) ? 0 : datum['Annual CO2 emissions']",
-          "as": "Emissions"  
         }
       ],
       "mark": {
@@ -39,14 +38,14 @@
       },
       "encoding": {
         "color": {
-          "field": "Emissions",  
+          "field": "Annual CO2 emissions",
           "type": "quantitative",
           "title": "Annual CO₂ Emissions (tons)",
           "scale": {"scheme": "reds"}
         },
         "tooltip": [
           {"field": "properties.name", "type": "nominal", "title": "Country"},
-          {"field": "Emissions", "type": "quantitative", "title": "Annual CO₂ Emissions (tons)"}
+          {"field": "Annual CO2 emissions", "type": "quantitative", "title": "Annual CO₂ Emissions (tons)"}
         ]
       }
     }
