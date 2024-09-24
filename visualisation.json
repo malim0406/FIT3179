@@ -8,22 +8,38 @@
   "layer": [
     {
       "data": {
-        "url": "https://raw.githubusercontent.com/malim0406/FIT3179/refs/heads/main/ne_110m.json",  
+        "url": "https://raw.githubusercontent.com/malim0406/FIT3179/refs/heads/main/ne_110m.json",
         "format": {
           "type": "topojson",
-          "feature": "countries"  
+          "feature": "countries"
         }
       },
       "mark": {
         "type": "geoshape",
         "stroke": "white"
       },
+      "transform": [
+        {
+          "lookup": "properties.name",
+          "from": {
+            "data": {
+              "url": "https://raw.githubusercontent.com/malim0406/FIT3179/refs/heads/main/annual-co2-emissions-per-country.csv",
+              "format": {"type": "csv"}
+            },
+            "key": "Country",
+            "fields": ["Annual CO2 emissions", "Year"]  
+          }
+        },
+        {
+          "filter": "datum['Year'] == 2022"  
+        }
+      ],
       "encoding": {
         "color": {
-          "field": "Annual CO2 emissions",  
+          "field": "Annual CO2 emissions",
           "type": "quantitative",
-          "title": "CO₂ Emissions (tons)",
-          "scale": {"scheme": "reds"}  
+          "title": "Annual CO₂ Emissions (tons)",
+          "scale": {"scheme": "reds"}
         },
         "tooltip": [
           {"field": "properties.name", "type": "nominal", "title": "Country"},
