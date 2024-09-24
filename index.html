@@ -3,22 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>World Obesity Rates Map</title>
+  <title>World CO₂ Emissions Map</title>
   <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
 </head>
 <body>
-  <h1>World Obesity Rates Map</h1>
+  <h1>World CO₂ Emissions Map</h1>
   <div id="vis"></div>
   <script type="text/javascript">
-    var spec = "https://raw.githubusercontent.com/malim0406/FIT3179/refs/heads/main/visualisation.json";  // Correct reference to your Vega-Lite JSON file
+    var spec = "https://raw.githubusercontent.com/malim0406/FIT3179/refs/heads/main/visualization.json";  // Replace this with your actual JSON URL
     vegaEmbed('#vis', spec).then(function(result) {
       console.log("Visualization loaded successfully");
     }).catch(console.error);
   </script>
 </body>
 </html>
+
 
 
 
